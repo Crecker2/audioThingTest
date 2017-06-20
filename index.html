@@ -119,9 +119,14 @@
 		baritoneSource.connect(audioCtx.destination);
 		bassSource.connect(audioCtx.destination);
 
+		function play(buffer) {
+			var context = audioCtx;
+			var source = context.createBufferSource();
+			source.buffer = buffer;
+			source.connect(context.destination);
+			source.start(0);
+		}
 		soloAudio.crossOrigin = "anonymous";
-
-		console.log(soloSource);
 
 		function masterPlay() {
 
