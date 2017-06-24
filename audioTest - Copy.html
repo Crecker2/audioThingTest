@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Audio Test</title>
+</head>
+<body>
+	
+  <!--Audio files-->
+
+	<ul> Solo<br>
+		<audio controls id="solo" class="track">
+			<source src="Faith_solo.wav" type="audio/wav">
+			This is the solo.
+		</audio>
+		<button class="highlight" onclick="highlight('solo')">
+			Highlight Solo
+		</button>
+		<button class="muteAllBut" onclick ="muteAllBut('solo')">
+			Solo Only
+		</button>
+	</ul>
+
+	<ul> Tenor 1<br>
+		<audio controls id="t1" class="track">
+			<source src="Faith_t1.wav" type="audio/wav">
+			This is the t1 part.
+		</audio>
+		<button class="highlight" onclick="highlight('t1')">
+			Highlight Tenor 1
+		</button>
+		<button class="muteAllBut" onclick ="muteAllBut('t1')">
+			Tenor 1 Only
+		</button>
+	</ul>
+
+	<ul> Tenor 2 <br>
+		<audio controls id="t2" class="track">
+			<source src="Faith_t2.wav" type="audio/wav">
+			This is the t2 part.
+		</audio>
+		<button class="highlight" onclick="highlight('t2')">
+			Highlight Tenor 2
+		</button>
+		<button class="muteAllBut" onclick ="muteAllBut('t2')">
+			Tenor 2 Only
+		</button>
+	</ul>
+
+	<ul> Baritone <br>
+		<audio controls id="baritone" class="track">
+			<source src="Faith_baritone.wav" type="audio/wav">
+			This is the baritone part.
+		</audio>
+		<button class="highlight" onclick="highlight('baritone')">
+			Highlight Baritone
+		</button>
+		<button class="muteAllBut" onclick ="muteAllBut('baritone')">
+			Baritone Only
+		</button>
+	</ul>
+
+	<ul> Bass <br>
+		<audio controls id="bass" class="track">
+			<source src="Faith_bass.wav" type="audio/wav">
+			This is the bass part.
+		</audio>
+		<button class="highlight" onclick="highlight('bass')">
+			Highlight Bass
+		</button>
+		<button class="muteAllBut" onclick ="muteAllBut('bass')">
+			Bass Only
+		</button>
+	</ul>
+
+  <!--End of Audio Files-->
+	<br>
+	<button class="play" onclick="masterPlay();">
+		Play/Pause
+	</button>
+	<button class="reset" onclick="reset()">
+		Reset
+	</button>
+	<button onclick="resetVolume()">
+		Reset Volume
+	</button>
+	<button onclick="seek('solo')">Sync tracks with solo</button>
+
+	<p id="currentSpeed">Playback speed: </p>
+	<input type="range" name="playbackSpeed" id="playbackSpeed" min=".5" max="1" value="1" step=".01">
+	<button onclick="changeSpeed()">
+		Change Playback Speed
+	</button>
+
+	<button >
+		click me test
+	</button>
+	<p></p>
+	
+	<script type="text/javascript">
+		var solo = document.getElementById("solo");
+		var isPlaying = 0;
+
+		var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+		var source = audioCtx.createMediaElementSource(solo);
+		source.connect(audioCtx.destination);
+
+		function masterPlay() {
+
+			if(isPlaying == 0){
+				for(var i=0; i<document.getElementsByClassName("track").length; i++) {
+					document.getElementsByClassName("track")[i].play();
+				}
+				isPlaying++;
+			} else {
+				for(var i=0; i<document.getElementsByClassName("track").length; i++) {
+					document.getElementsByClassName("track")[i].pause();
+				}
+				isPlaying--;
+			}
+		}
+
+		function reset() {
+			for(var i=0; i<document.getElementsByClassName("track").length; i++) {
+				document.getElementsByClassName("track")[i].pause();
+				document.getElementsByClassName("track")[i].volume = 1;
+				document.getElementsByClassName("track")[i].currentTime = 0;
+				document.getElementsByClassName("track")[i].muted = 0;
+				document.getElementsByClassName("track")[i].playbackRate = 1;
+				isPlaying = 0;
+			}
+		}
+
+		function resetVolume() {
+			for(var i=0; i<document.getElementsByClassName("track").length; i++) {
+				document.getElementsByClassName("track")[i].volume = 1;
+				document.getElementsByClassName("track")[i].muted = 0;
+				isPlaying = 0;
+			}
+		}
+
+		function muteAllBut(part) {
+			resetVolume();
+			for(var i=0; i<document.getElementsByClassName("track").length; i++) {
+					if(document.getElementsByClassName("track")[i].id != part) {
+						document.getElementsByClassName("track")[i].muted = 1;
+					}
+				}
+		}
+
+		function highlight(part) {
+			resetVolume();
+			for(var i=0; i<document.getElementsByClassName("track").length; i++) {
+				if(document.getElementsByClassName("track")[i].id != part) {
+					document.getElementsByClassName("track")[i].volume = 1/5;
+				}
+			}
+		}
+
+		function changeSpeed() {
+			for(var i=0; i<document.getElementsByClassName("track").length; i++) {
+				document.getElementsByClassName("track")[i].playbackRate = document.getElementById("playbackSpeed").value;
+			}
+		}
+
+		function seek(part){
+
+			var seekingTrack = document.getElementById(part);
+				seekingTrack.onseeked = function() {
+					for(var i=0; i<document.getElementsByClassName("track").length; i++) {
+						if(document.getElementsByClassName("track")[i].id != part) {
+							document.getElementsByClassName("track")[i].currentTime = seekingTrack.currentTime;
+						}
+					}
+				}
+		}
+
+		seek("solo");
+		
+	
+	</script>
+
+</body>
+</html>
