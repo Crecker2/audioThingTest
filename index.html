@@ -101,10 +101,22 @@
 		var isPlaying = 0;
 
 		var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-		var source = audioCtx.createMediaElementSource(solo);
-		var gainNode = audioCtx.createGain();
-		source.connect(gainNode);
-		gainNode.connect(audioCtx.destination);
+		    request = new XMLHttpRequest();
+		    
+		request.open("GET", "Faith_solo.mp3", true);
+		request.responseType = "arraybuffer";
+		request.onload = function(){
+			//request.response is audio
+			audioCtx.decodeAudioData(request.response, onDecoded)
+		}
+		
+		function onDecoded(buffer){
+			var bufferSource = audioCtx.createBufferSource();
+			bufferSource.buffer = buffer;
+			bufferSource.connect(audioCtx.destination);
+			bufferSource.start();
+		}
+		
 
 		function masterPlay() {
 
