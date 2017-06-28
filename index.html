@@ -123,12 +123,12 @@
 				source.buffer = bufferSource.buffer;
 				source.connect(audioCtx.destination);
 				source.start(audioCtx.currentTime);
-				isPlaying--;
+				isPlaying++;
 				
 				
 			} else {
 				source.stop();
-				isPlaying++;
+				isPlaying--;
 			}
 		}
 		function masterPlay() {
