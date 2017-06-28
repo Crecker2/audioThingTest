@@ -133,7 +133,7 @@
 				
 			} else {
 				source.audio.stop();
-				source.seekAsOfLastPause = currentTime - startTime;
+				source.seekAsOfLastPause = source.currentTime - source.startTime;
 				isPlaying--;
 				
 			}
