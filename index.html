@@ -119,7 +119,7 @@
 		
 		function playpausefunction(){
 			if(isPlaying == 0){
-				var source = audioCtx.createBufferSource();
+				source = audioCtx.createBufferSource();
 				source.buffer = bufferSource.buffer;
 				source.connect(audioCtx.destination);
 				source.start(audioCtx.currentTime);
