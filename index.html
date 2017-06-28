@@ -4,7 +4,97 @@
 	<title>Audio Test</title>
 </head>
 <body>
-		<script type="text/javascript">
+  <!--Audio files-->
+
+	<ul> Solo<br>
+		<audio controls id="solo" class="track">
+			<source src="Faith_solo.mp3" type="audio/mp3">
+			This is the solo.
+		</audio>
+		<button class="highlight" onclick="highlight('solo')">
+			Highlight Solo
+		</button>
+		<button class="muteAllBut" onclick ="muteAllBut('solo')">
+			Solo Only
+		</button>
+	</ul>
+
+	<ul> Tenor 1<br>
+		<audio controls id="t1" class="track">
+			<source src="Faith_t1.mp3" type="audio/mp3">
+			This is the t1 part.
+		</audio>
+		<button class="highlight" onclick="highlight('t1')">
+			Highlight Tenor 1
+		</button>
+		<button class="muteAllBut" onclick ="muteAllBut('t1')">
+			Tenor 1 Only
+		</button>
+	</ul>
+
+	<ul> Tenor 2 <br>
+		<audio controls id="t2" class="track">
+			<source src="Faith_t2.mp3" type="audio/mp3">
+			This is the t2 part.
+		</audio>
+		<button class="highlight" onclick="highlight('t2')">
+			Highlight Tenor 2
+		</button>
+		<button class="muteAllBut" onclick ="muteAllBut('t2')">
+			Tenor 2 Only
+		</button>
+	</ul>
+
+	<ul> Baritone <br>
+		<audio controls id="baritone" class="track">
+			<source src="Faith_baritone.mp3" type="audio/mp3">
+			This is the baritone part.
+		</audio>
+		<button class="highlight" onclick="highlight('baritone')">
+			Highlight Baritone
+		</button>
+		<button class="muteAllBut" onclick ="muteAllBut('baritone')">
+			Baritone Only
+		</button>
+	</ul>
+
+	<ul> Bass <br>
+		<audio controls id="bass" class="track">
+			<source src="Faith_bass.mp3" type="audio/mp3">
+			This is the bass part.
+		</audio>
+		<button class="highlight" onclick="highlight('bass')">
+			Highlight Bass
+		</button>
+		<button class="muteAllBut" onclick ="muteAllBut('bass')">
+			Bass Only
+		</button>
+	</ul>
+
+  <!--End of Audio Files-->
+	<br>
+	<button class="play" onclick="masterPlay();">
+		Play/Pause
+	</button>
+	<button class="reset" onclick="reset()">
+		Reset
+	</button>
+	<button onclick="resetVolume()">
+		Reset Volume
+	</button>
+	<button onclick="seek('solo')">Sync tracks with solo</button>
+
+	<p id="currentSpeed">Playback speed: </p>
+	<input type="range" name="playbackSpeed" id="playbackSpeed" min=".5" max="1" value="1" step=".01">
+	<button onclick="changeSpeed()">
+		Change Playback Speed
+	</button>
+
+	<button id="play/pause" onclick="playpausefunction()">
+		click me test
+	</button>
+	
+<script type="text/javascript">
 		var solo = document.getElementById("solo");
 		var isPlaying = 0;
 
@@ -115,97 +205,6 @@
 		
 	
 	</script>
-  <!--Audio files-->
-
-	<ul> Solo<br>
-		<audio controls id="solo" class="track">
-			<source src="Faith_solo.mp3" type="audio/mp3">
-			This is the solo.
-		</audio>
-		<button class="highlight" onclick="highlight('solo')">
-			Highlight Solo
-		</button>
-		<button class="muteAllBut" onclick ="muteAllBut('solo')">
-			Solo Only
-		</button>
-	</ul>
-
-	<ul> Tenor 1<br>
-		<audio controls id="t1" class="track">
-			<source src="Faith_t1.mp3" type="audio/mp3">
-			This is the t1 part.
-		</audio>
-		<button class="highlight" onclick="highlight('t1')">
-			Highlight Tenor 1
-		</button>
-		<button class="muteAllBut" onclick ="muteAllBut('t1')">
-			Tenor 1 Only
-		</button>
-	</ul>
-
-	<ul> Tenor 2 <br>
-		<audio controls id="t2" class="track">
-			<source src="Faith_t2.mp3" type="audio/mp3">
-			This is the t2 part.
-		</audio>
-		<button class="highlight" onclick="highlight('t2')">
-			Highlight Tenor 2
-		</button>
-		<button class="muteAllBut" onclick ="muteAllBut('t2')">
-			Tenor 2 Only
-		</button>
-	</ul>
-
-	<ul> Baritone <br>
-		<audio controls id="baritone" class="track">
-			<source src="Faith_baritone.mp3" type="audio/mp3">
-			This is the baritone part.
-		</audio>
-		<button class="highlight" onclick="highlight('baritone')">
-			Highlight Baritone
-		</button>
-		<button class="muteAllBut" onclick ="muteAllBut('baritone')">
-			Baritone Only
-		</button>
-	</ul>
-
-	<ul> Bass <br>
-		<audio controls id="bass" class="track">
-			<source src="Faith_bass.mp3" type="audio/mp3">
-			This is the bass part.
-		</audio>
-		<button class="highlight" onclick="highlight('bass')">
-			Highlight Bass
-		</button>
-		<button class="muteAllBut" onclick ="muteAllBut('bass')">
-			Bass Only
-		</button>
-	</ul>
-
-  <!--End of Audio Files-->
-	<br>
-	<button class="play" onclick="masterPlay();">
-		Play/Pause
-	</button>
-	<button class="reset" onclick="reset()">
-		Reset
-	</button>
-	<button onclick="resetVolume()">
-		Reset Volume
-	</button>
-	<button onclick="seek('solo')">Sync tracks with solo</button>
-
-	<p id="currentSpeed">Playback speed: </p>
-	<input type="range" name="playbackSpeed" id="playbackSpeed" min=".5" max="1" value="1" step=".01">
-	<button onclick="changeSpeed()">
-		Change Playback Speed
-	</button>
-
-	<button id="play/pause" onclick="playpausefunction()">
-		click me test
-	</button>
-	
-
 
 </body>
 </html>
