@@ -111,7 +111,7 @@
 		}
 		
 		function onDecoded(buffer){
-			var bufferSource = audioCtx.createBufferSource();
+			bufferSource = audioCtx.createBufferSource();
 			bufferSource.buffer = buffer;
 			bufferSource.connect(audioCtx.destination);
 			bufferSource.start();
