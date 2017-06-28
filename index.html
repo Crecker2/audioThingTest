@@ -117,14 +117,16 @@
 		
 		request.send();
 		
+		source = {
+			  audio: audioCtx.createBufferSource(),
+			  startTime: null,
+			  seekAsOfLastPause: null
+			 };
 		function playpausefunction(){
 			if(isPlaying == 0){
-				source = {audio: audioCtx.createBufferSource(),
-					  startTime: audioCtx.currentTime,
-					  seekAsOfLastPause: audioCtx.currentTime - source.startTime
-					 };
-				source.buffer = bufferSource.buffer;
-				source.connect(audioCtx.destination);
+				source.audio.buffer = bufferSource.buffer;
+				source.startTime = audioCtx.currentTime
+				source.audio.connect(audioCtx.destination);
 				source.audio.start(source.seekAsOfLastPause);
 				isPlaying++;
 				
