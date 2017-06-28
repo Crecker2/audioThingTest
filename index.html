@@ -119,16 +119,21 @@
 		
 		function playpausefunction(){
 			if(isPlaying == 0){
-				source = audioCtx.createBufferSource();
+				source = {audio: audioCtx.createBufferSource(),
+					  startTime: audioCtx.currentTime,
+					  seekAsOfLastPause: audioCtx.currentTime - startTime
+					 };
 				source.buffer = bufferSource.buffer;
 				source.connect(audioCtx.destination);
-				source.start(audioCtx.currentTime);
+				source.audio.start(source.seekAsOfLastPause);
 				isPlaying++;
 				
 				
 			} else {
-				source.stop();
+				source.audio.stop();
+				source.seekAsOfLastPause = currentTime - startTime;
 				isPlaying--;
+				
 			}
 		}
 		function masterPlay() {
