@@ -91,10 +91,9 @@
 		Change Playback Speed
 	</button>
 
-	<button >
+	<button id="play/pause" onclick="playpausefunction()">
 		click me test
 	</button>
-	<p></p>
 	
 	<script type="text/javascript">
 		var solo = document.getElementById("solo");
@@ -111,14 +110,28 @@
 		}
 		
 		var bufferSource = audioCtx.createBufferSource();
-		
+		var tempBuffer;
 		function onDecoded(buffer){
 			bufferSource.buffer = buffer;
 			bufferSource.connect(audioCtx.destination);
 		}
 		
 		request.send();
-
+		
+		function playpausefunction(){
+			if(isplaying == 1){
+				bufferSource.stop();
+				isPlaying--;
+			} else {
+				var source = audioCtx.createBufferSource();
+				source.buffer = bufferSource;
+				source.connect(audioCtx.destination);
+				source.start(audioCtx.currentTime);
+				isPlaying++;
+				
+				
+			}
+		}
 		function masterPlay() {
 
 			if(isPlaying == 0){
