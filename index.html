@@ -123,7 +123,7 @@
 				isPlaying--;
 			} else {
 				var source = audioCtx.createBufferSource();
-				source.buffer = bufferSource;
+				source.buffer = bufferSource.buffer;
 				source.connect(audioCtx.destination);
 				source.start(audioCtx.currentTime);
 				isPlaying++;
