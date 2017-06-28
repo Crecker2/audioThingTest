@@ -110,13 +110,14 @@
 			audioCtx.decodeAudioData(request.response, onDecoded)
 		}
 		
+		var bufferSource = audioCtx.createBufferSource();
+		
 		function onDecoded(buffer){
-			bufferSource = audioCtx.createBufferSource();
 			bufferSource.buffer = buffer;
 			bufferSource.connect(audioCtx.destination);
-			bufferSource.start();
 		}
 		
+		request.send();
 
 		function masterPlay() {
 
