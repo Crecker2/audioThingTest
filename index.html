@@ -118,17 +118,17 @@
 		request.send();
 		
 		function playpausefunction(){
-			if(isPlaying == 1){
-				bufferSource.stop();
-				isPlaying--;
-			} else {
+			if(isPlaying == 0){
 				var source = audioCtx.createBufferSource();
 				source.buffer = bufferSource.buffer;
 				source.connect(audioCtx.destination);
 				source.start(audioCtx.currentTime);
+				isPlaying--;
+				
+				
+			} else {
+				source.stop();
 				isPlaying++;
-				
-				
 			}
 		}
 		function masterPlay() {
