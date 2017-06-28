@@ -124,6 +124,7 @@
 			 };
 		function playpausefunction(){
 			if(isPlaying == 0){
+				source.audio = audioCtx.createBufferSource();
 				source.audio.buffer = bufferSource.buffer;
 				source.startTime = audioCtx.currentTime
 				source.audio.connect(audioCtx.destination);
