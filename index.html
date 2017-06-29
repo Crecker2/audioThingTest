@@ -126,7 +126,7 @@
 			if(isPlaying == 0){
 				source.audio = audioCtx.createBufferSource();
 				source.audio.buffer = bufferSource.buffer;
-				source.startTime = audioCtx.currentTime
+				source.startTime = audioCtx.currentTime;
 				source.audio.connect(audioCtx.destination);
 				source.audio.start(source.seekAsOfLastPause);
 				isPlaying++;
@@ -134,7 +134,7 @@
 				
 			} else {
 				source.audio.stop();
-				source.seekAsOfLastPause = source.currentTime - source.startTime;
+				source.seekAsOfLastPause = audioCtx.currentTime - source.startTime;
 				isPlaying--;
 				
 			}
