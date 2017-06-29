@@ -120,7 +120,8 @@
 		source = {
 			  audio: audioCtx.createBufferSource(),
 			  startTime: null,
-			  seekAsOfLastPause: 0
+			  seekAsOfLastPause: 0,
+		          duration: 0
 			 };
 		function playpausefunction(){
 			if(isPlaying == 0){
@@ -135,6 +136,7 @@
 			} else {
 				source.audio.stop();
 				source.seekAsOfLastPause = audioCtx.currentTime - source.startTime;
+				source.duration += seekAsOflastPause;
 				isPlaying--;
 				
 			}
